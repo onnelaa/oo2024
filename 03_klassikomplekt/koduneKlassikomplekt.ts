@@ -52,3 +52,8 @@ ladu.lisaMööbel(tool1);
 ladu.lisaMööbel(laud1);
 
 ladu.näitaKoguLaoseis();
+
+//Väljund:
+//Laoseis:
+//Tool - 10
+//Laud - 5
