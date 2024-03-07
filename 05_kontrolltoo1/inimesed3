@@ -1,0 +1,58 @@
+class Kool {
+  private aadress: string;
+  private nimetus: string;
+  private isikud: string[] = [];
+
+  constructor(aadress:string, nimetus:string) {
+      this.aadress = aadress;
+      this.nimetus = nimetus;
+  }
+
+  public lisaIsik(nimi:string): void {
+      this.isikud.push(nimi);
+  }
+
+  public kysiIsikuteArv(): number {
+      return this.isikud.length;
+  }
+
+  public naitaAndmed(): void {
+      console.log(`Kool: ${this.nimetus}`);
+      console.log(`Aadress: ${this.aadress}`);
+      console.log(`Isikute arv: ${this.kysiIsikuteArv()}`);
+  }
+}
+
+class KooleKokku {
+    private koolid: Kool[] = [];
+
+    public lisaKool(kool: Kool): void {
+        this.koolid.push(kool);
+    }
+
+    public kysiKoolideArv(): number {
+        return this.koolid.length;
+    }
+
+  public naitaAndmed(): void {
+    for (const kool of this.koolid) {
+      kool.naitaAndmed();
+    }
+  }
+}
+
+let koikKoolid = new KooleKokku();
+
+let kool1 = new Kool("Tallinn", "Tallinna Ülikool");
+kool1.lisaIsik("Otto");
+kool1.lisaIsik("Indrek");
+kool1.lisaIsik("Mari");
+koikKoolid.lisaKool(kool1);
+
+let kool2 = new Kool("Tartu", "Tartu Ülikool");
+kool2.lisaIsik("Juku");
+kool2.lisaIsik("Malle");
+koikKoolid.lisaKool(kool2);
+
+console.log(`Koole kokku: ${koikKoolid.kysiKoolideArv()}`);
+koikKoolid.naitaAndmed();
