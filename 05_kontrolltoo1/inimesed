@@ -1,0 +1,29 @@
+class Inimene {
+  protected eesnimi: string;
+  protected perekonnanimi: string;
+  protected synniaasta: number;
+
+  constructor(eesnimi:string, perekonnanimi:string, synniaasta:number) {
+    this.eesnimi = eesnimi;
+    this.perekonnanimi = perekonnanimi;
+    this.synniaasta = synniaasta;
+  }
+
+  public getEesnimi():string {
+    return this.eesnimi;
+  }
+
+  public getPerekonnanimi():string {
+    return this.perekonnanimi;
+  }
+
+  public getSynniaasta():number {
+    return this.synniaasta;
+  }
+}
+
+let otto = new Inimene("Otto", "Luik", 1999);
+let mari = new Inimene("Mari", "Järv", 1995);
+
+console.log(otto.getEesnimi());
+console.log(mari.getSynniaasta());
