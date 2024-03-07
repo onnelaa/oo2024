@@ -1,0 +1,81 @@
+class Inimene {
+  protected eesnimi: string;
+  protected perekonnanimi: string;
+  protected synniaasta: number;
+  protected kysitudEesnimed: number;
+
+  constructor(eesnimi:string, perekonnanimi:string, synniaasta:number) {
+    this.eesnimi = eesnimi;
+    this.perekonnanimi = perekonnanimi;
+    this.synniaasta = synniaasta;
+    this.kysitudEesnimed = 0;
+  }
+
+  public getEesnimi():string {
+    this.kysitudEesnimed++; //iga kord, kui küsitakse, suurendatakse kordade arvu
+    return this.eesnimi;
+  }
+
+  public getPerekonnanimi():string {
+    return this.perekonnanimi;
+  }
+
+  public getSynniaasta():number {
+    return this.synniaasta;
+  }
+
+  kontrolliVanus():string {
+    if (this.synniaasta < 1910 || this.synniaasta > 2024) {
+      return "Ei vasta nõuetele.";
+    } else {
+      return "Vastab nõuetele.";
+    }
+  }
+
+  public getkysitudEesnimed(): number { 
+    return this.kysitudEesnimed;
+  }
+}
+
+class Loendur {
+  private mituInimest: Inimene[];
+
+  constructor() {
+    this.mituInimest=[];
+  }
+
+  public lisaInimene(inimene: Inimene):void { 
+    this.mituInimest.push(inimene);
+  }
+
+  public naitaKoguListi():void {
+    for (let i = 0; i < this.mituInimest.length; i++) {
+      const inimene = this.mituInimest[i];
+      console.log(`${inimene.getEesnimi()}`);
+    }
+  }
+
+  public naitaEesnimed():void { 
+    for (let i = 0; i < this.mituInimest.length; i++) {
+      const inimene = this.mituInimest[i];
+      console.log(`${inimene.getEesnimi()} on küsitud ${inimene.getkysitudEesnimed()} korda.`);
+    }
+  }
+}
+
+let loendur = new Loendur();
+
+let otto = new Inimene("Otto", "Luik", 1999);
+let mari = new Inimene("Mari", "Järv", 1995);
+let indrek = new Inimene("Indrek", "Saabas", 1905);
+
+//console.log(otto.kontrolliVanus());
+//console.log(mari.kontrolliVanus());
+//console.log(indrek.kontrolliVanus());
+
+loendur.lisaInimene(otto);
+loendur.lisaInimene(mari);
+loendur.lisaInimene(indrek);
+
+//loendur.naitaKoguListi();
+loendur.naitaEesnimed(); 
