@@ -1,10 +1,22 @@
-class Hulknurk{
-  constructor(protected xid:number[]=[], protected yid:number[]=[]){}
-  lisa(x:number, y:number){this.xid.push(x); this.yid.push(y);}
+class Kolmnurk {
+  xKoordinaadid: number[];
+  yKoordinaadid: number[];
+
+  constructor(xKoordinaadid: number[], yKoordinaadid: number[]) {
+    this.xKoordinaadid = xKoordinaadid;
+    this.yKoordinaadid = yKoordinaadid;
+  }
+
+  prindiKoordinaadid() {
+    console.log("Kolmnurga x-koordinaadid:", this.xKoordinaadid);
+    console.log("Kolmnurga y-koordinaadid:", this.yKoordinaadid);
+  }
 }
 
-let k1 = new Hulknurk([3,6,7], [1,4,3]);
-let k2 = new Hulknurk();
-k2.lisa(3,5)
-console.log(k1);
-console.log(k2);
+let kolmnurk1 = new Kolmnurk([5, 1, 2], [6, 2, 3]);
+let kolmnurk2 = new Kolmnurk([6, 5, 8], [9, 1, 2]);
+
+console.log("Kolmnurk 1 andmed:");
+kolmnurk1.prindiKoordinaadid();
+console.log("Kolmnurk 2 andmed:");
+kolmnurk2.prindiKoordinaadid();
