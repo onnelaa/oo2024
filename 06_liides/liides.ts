@@ -1,7 +1,7 @@
 class AverageFuelConsumption {
   calculate(distance: number, fuelAmount: number): number {
     if (distance <= 0 || fuelAmount <= 0) {
-      throw new Error("Distance and fuel amount must be positive numbers.");
+      throw new Error("Distants ja kütusekulu peavad olema positiivsed numbrid.");
     }
     return distance / fuelAmount;
   }
