@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Takisti</title>
+    <script src="takistikodus.js"></script>
+    <script>
+        let r1, r2, sc1;
+        function startPage(){
+           r1=new Resistor(110); 
+           r2=new Resistor(220);
+           sc1=new SeriesCircuit(canvas1.getContext("2d"), 10, 50);
+           sc1.push(r1);
+           sc1.push(r2);
+           range1.value=r1.getR();
+           range2.value=r2.getR();
+        }
+        //lisatud funktsioon, mis muudab takisti takistust vastavalt vormis määratud väärtusele
+        function updateResistance(rangeElement, resistor) {
+            resistor.setR(rangeElement.valueAsNumber);
+        }
+    </script>
+</head>
+<body onload="startPage()">
+    <canvas id="canvas1" width="400" height="150"></canvas> <br />
+    <!-- Takisti 1 väärtuse reguleerimiseks -->
+    <input type="range" id="range1" min="100" max="1000" onchange="updateResistance(this, r1)" />
+    <!-- Takisti 2 väärtuse reguleerimiseks -->
+    <input type="range" id="range2" min="100" max="1000" onChange="updateResistance(this, r2)" />
+</body>
+</html>
