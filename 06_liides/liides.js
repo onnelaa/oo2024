@@ -1,23 +1,45 @@
-var AverageFuelConsumption = /** @class */ (function () {
-    function AverageFuelConsumption() {}
-    AverageFuelConsumption.prototype.calculate = function (distance, fuelAmount) {
-      if (distance <= 0 || fuelAmount <= 0) {
-        throw new Error("Distance and fuel amount must be positive numbers.");
-      }
-      return distance / fuelAmount;
-    };
-    return AverageFuelConsumption;
-  }());
-  
-  document.getElementById("fuelForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-    
-    var distance = parseFloat(document.getElementById("distance").value);
-    var fuelAmount = parseFloat(document.getElementById("fuelAmount").value);
-    
-    var calculator = new AverageFuelConsumption();
-    var averageConsumption = calculator.calculate(distance, fuelAmount);
-    
-    document.getElementById("result").textContent = "Keskmine kütusekulu: " + averageConsumption.toFixed(2) + " km/l";
-  });
-  
+var CelsiusFahrenheitiks = /** @class */ (function () {
+  function CelsiusFahrenheitiks() {
+  }
+  CelsiusFahrenheitiks.prototype.arvuta = function (celsius) {
+      return (celsius * 9 / 5) + 32;
+  };
+  CelsiusFahrenheitiks.prototype.sisendÜhik = function () {
+      return "°C";
+  };
+  CelsiusFahrenheitiks.prototype.väljundÜhik = function () {
+      return "°F";
+  };
+  return CelsiusFahrenheitiks;
+}());
+var FahrenheitCelsiuseks = /** @class */ (function () {
+  function FahrenheitCelsiuseks() {
+  }
+  FahrenheitCelsiuseks.prototype.arvuta = function (fahrenheit) {
+      return (fahrenheit - 32) * 5 / 9;
+  };
+  FahrenheitCelsiuseks.prototype.sisendÜhik = function () {
+      return "°F";
+  };
+  FahrenheitCelsiuseks.prototype.väljundÜhik = function () {
+      return "°C";
+  };
+  return FahrenheitCelsiuseks;
+}());
+var Kalkulaator = /** @class */ (function () {
+  function Kalkulaator(koefitsient, sisendÜhikuTüüp, väljundÜhikuTüüp) {
+      this.koefitsient = koefitsient;
+      this.sisendÜhikuTüüp = sisendÜhikuTüüp;
+      this.väljundÜhikuTüüp = väljundÜhikuTüüp;
+  }
+  Kalkulaator.prototype.arvuta = function (x) {
+      return this.koefitsient * x;
+  };
+  Kalkulaator.prototype.sisendÜhik = function () {
+      return this.sisendÜhikuTüüp;
+  };
+  Kalkulaator.prototype.väljundÜhik = function () {
+      return this.väljundÜhikuTüüp;
+  };
+  return Kalkulaator;
+}());
