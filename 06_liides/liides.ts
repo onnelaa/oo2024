@@ -1,26 +1,46 @@
-class AverageFuelConsumption {
-  calculate(distance: number, fuelAmount: number): number {
-    if (distance <= 0 || fuelAmount <= 0) {
-      throw new Error("Distants ja kütusekulu peavad olema positiivsed numbrid.");
-    }
-    return distance / fuelAmount;
+interface Arvutusfunktsioon {
+  arvuta(celsius: number): number;
+  sisendÜhik(): string;
+  väljundÜhik(): string;
+}
+
+class CelsiusFahrenheitiks implements Arvutusfunktsioon {
+  arvuta(celsius: number): number {
+    return (celsius * 9/5) + 32;
+  }
+  sisendÜhik(): string {
+    return "°C";
+  }
+  väljundÜhik(): string {
+    return "°F";
   }
 }
 
-document.getElementById("fuelForm")!.addEventListener("submit", function(event) {
-  event.preventDefault(); //takistab vaikimisi vormi esitamise käitumist
-  
-  const distanceInput = document.getElementById("distance") as HTMLInputElement; 
-  const fuelAmountInput = document.getElementById("fuelAmount") as HTMLInputElement; //võtavad kinni kauguse ja kütuse sisestuse väärtused vastavalt nende elementide id-dele.
-  
-  const distance = parseFloat(distanceInput.value);
-  const fuelAmount = parseFloat(fuelAmountInput.value);
-  
-  const calculator = new AverageFuelConsumption(); //loob uue objekti 
-  const averageConsumption = calculator.calculate(distance, fuelAmount); //kasutab loodud objekti, et arvutada keskmine kütusekulu, kasutades sisestatud kaugust ja kütusekogust.
-  
-  const resultElement = document.getElementById("result");
-  if (resultElement) {
-    resultElement.textContent = `Keskmine kütusekulu: ${averageConsumption.toFixed(2)} km/l`;
+class FahrenheitCelsiuseks implements Arvutusfunktsioon {
+  arvuta(fahrenheit: number): number {
+    return (fahrenheit - 32) * 5/9;
   }
-});
+  sisendÜhik(): string {
+    return "°F";
+  }
+  väljundÜhik(): string {
+    return "°C";
+  }
+}
+
+class Kalkulaator implements Arvutusfunktsioon {
+  constructor(
+    protected koefitsient: number,
+    protected sisendÜhikuTüüp: string,
+    protected väljundÜhikuTüüp: string
+  ) {}
+  arvuta(x: number): number {
+    return this.koefitsient * x;
+  }
+  sisendÜhik(): string {
+    return this.sisendÜhikuTüüp;
+  }
+  väljundÜhik(): string {
+    return this.väljundÜhikuTüüp;
+  }
+}
